@@ -14,6 +14,14 @@ Configuraciones en la parte de Server
 
 - Microsoft.AspNetCore.Authentication.JwtBearer
 - Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore
 - Microsoft.AspNetCore.Identity.UI
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
+
+### Conexión a la BD
+
+- Data
+  - ApplicationDbContext: para la base de datos.
+- appsettings: agregamos la conexión a la BD.
+- Program: para registrar la conexión a la BD y agregar la identidad del usuario al service.
