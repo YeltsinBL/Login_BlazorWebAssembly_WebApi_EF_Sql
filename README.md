@@ -34,3 +34,8 @@ dotnet ef database update
 ```
 
 > Nota: Como se esta utilizando Docker para la BD, en la conexión del appsettings, debe de incluir el `TrustServerCertificate=True;`.
+
+### Configuración de JWT
+
+- Program: se registró y configuró el JWT en el service del builder.
+  - Se habilitó el uso de Autenticación y Autorización.

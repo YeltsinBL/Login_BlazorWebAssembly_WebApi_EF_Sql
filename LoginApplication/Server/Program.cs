@@ -1,7 +1,10 @@
-﻿using LoginApplication.Server.Data;
+﻿using System.Text;
+using LoginApplication.Server.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,24 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 // Agregamos la identidad del usuario y el DBContex al Services
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Registramos y configuramos el JWT
+var securityKey = builder.Configuration["JwtSecurityKey"]; // obtenermos la clave secreta
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opt =>
+    {
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true, // validar quién solicita el token
+            ValidateAudience = true, // validar desde dónde solicita el token
+            ValidateLifetime = true, // validar tiempo de vida del token 
+            ValidateIssuerSigningKey = true, // validar el usuario
+            ValidIssuer = builder.Configuration["JwtIssuer"], // desde donde solicita el token
+            ValidAudience = builder.Configuration["JwtAudience"], // desde donde solicita el token
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(securityKey!)) // credenciales del token
+        };
+    });
 
 var app = builder.Build();
 
@@ -40,7 +61,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
