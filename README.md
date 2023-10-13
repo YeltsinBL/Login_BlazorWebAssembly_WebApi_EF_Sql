@@ -16,6 +16,7 @@ Configuraciones en la parte de Server
 - Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore
 - Microsoft.AspNetCore.Identity.UI
+- Microsoft.EntityFrameworkCore.Design
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 
@@ -25,3 +26,11 @@ Configuraciones en la parte de Server
   - ApplicationDbContext: para la base de datos.
 - appsettings: agregamos la conexión a la BD.
 - Program: para registrar la conexión a la BD y agregar la identidad del usuario al service.
+- Realizamos la migración a la BD tomando de referencia el `IdentityDbContext`.
+
+```sh
+dotnet ef migrations add InitialCreate -o Data/Migrations
+dotnet ef database update
+```
+
+> Nota: Como se esta utilizando Docker para la BD, en la conexión del appsettings, debe de incluir el `TrustServerCertificate=True;`.
