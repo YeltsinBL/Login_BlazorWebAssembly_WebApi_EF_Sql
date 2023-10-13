@@ -19,6 +19,7 @@ Configuraciones en la parte de Server
 - Microsoft.EntityFrameworkCore.Design
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
+- Swashbuckle.AspNetCore
 
 ### Conexión a la BD
 
@@ -39,3 +40,17 @@ dotnet ef database update
 
 - Program: se registró y configuró el JWT en el service del builder.
   - Se habilitó el uso de Autenticación y Autorización.
+
+### Configuracion de Controllers
+
+- AccountsController: registar al usuario.
+- LoginController: iniciar sesión.
+- Program: se configuró para utilizar la interfaz de Swagger.
+
+## Shared Project
+
+- Clases
+  - RegisterModel: modelo que recibira el controller.
+  - RegisteResult: respuesta del controller.
+  - LoginModel: credenciales del login.
+  - LoginResult: respuesta del controller

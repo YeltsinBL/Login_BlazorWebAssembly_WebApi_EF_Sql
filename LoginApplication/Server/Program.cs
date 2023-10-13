@@ -13,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+// Usar la interfaz de usuario Swagger como interfaz creada por la Api
+builder.Services.AddSwaggerGen();
+
 // Registramos la conexión a la base de datos
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 {
@@ -58,6 +61,10 @@ app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
+
+// configuracion del Middleware para usar el Swagger
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseRouting();
 
