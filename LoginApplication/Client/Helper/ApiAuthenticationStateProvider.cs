@@ -35,10 +35,10 @@ namespace LoginApplication.Client.Helper
         /// <summary>
         /// Marcar al usuario como Autenticado
         /// </summary>
-        /// <param name="email"></param>
-        public void MarkUserAsAuthenticated(string email)
+        /// <param name="token"></param>
+        public void MarkUserAsAuthenticated(string token)
         {
-            var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, "apiauth"));
+            var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt"));
             var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
             NotifyAuthenticationStateChanged(authState);
         }

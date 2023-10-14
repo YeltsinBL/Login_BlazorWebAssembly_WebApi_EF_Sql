@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LoginApplication.Shared;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LoginApplication.Server.Controllers;
 
@@ -19,6 +20,7 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpGet]
     public IEnumerable<WeatherForecast> Get()
     {
