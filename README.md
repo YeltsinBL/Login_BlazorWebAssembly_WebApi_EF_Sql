@@ -54,3 +54,29 @@ dotnet ef database update
   - RegisteResult: respuesta del controller.
   - LoginModel: credenciales del login.
   - LoginResult: respuesta del controller
+
+## Client Project
+
+### NuGets
+
+- Microsoft.AspNetCore.Components.Authorization
+- Blazored.LocalStorage
+
+### Configuraciones
+
+- Helper
+  - ApiAuthenticationStateProvider
+    - Verificar si existe el token del usuario para agregarlo a la petición.
+    - Notificar si el usuario esta autenticado o ha cerrado sesión.
+- Service
+  - IAuthService: interfaz del servicio.
+  - AuthService: clase hererdada de la interfaz IAuthService y contiene la logica para registrarse, iniciar y cerrar sesión.
+- Pages
+  - Login: formulario para iniciar sesión.
+  - LoginDisplay: formulario para mostrar las opciones de sesión.
+  - Logout: formulario para cerrar sesión.
+  - Register: formulario para registrar nuestra cuenta.
+- Shared
+  - MainLayout: se agrega el LoginDisplay para mostrar las opciones.
+- App: agregamos el componente de autorización.
+- Program: agregamos los archivos creados y servicios utilizados.
