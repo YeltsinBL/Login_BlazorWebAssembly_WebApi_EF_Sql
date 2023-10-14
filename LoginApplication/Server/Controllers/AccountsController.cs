@@ -26,7 +26,13 @@ namespace LoginApplication.Server.Controllers
                 var error = result.Errors.Select(x => x.Description);
                 return Ok(new RegisteResult { Successful = false, Errors = error });
             }
-
+            // Agregar un rol al usuario
+            await _userManager.AddToRoleAsync(newUser, "User");
+            if (newUser.Email!.ToLower().StartsWith("admin"))
+            {
+                await _userManager.AddToRoleAsync(newUser, "Admin");
+                return Ok(new RegisteResult { Successful = true });
+            }
             return Ok(new RegisteResult { Successful = true });
         }
 

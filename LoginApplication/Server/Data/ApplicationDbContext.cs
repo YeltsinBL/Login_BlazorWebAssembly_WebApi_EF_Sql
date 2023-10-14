@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LoginApplication.Server.Data
@@ -8,6 +9,29 @@ namespace LoginApplication.Server.Data
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options)
 		{
 		}
-	}
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "User", // Nombre del Rol
+                NormalizedName = "USER", // Nombre normalizado
+                Id = Guid.NewGuid().ToString(), // Id del usuario
+                ConcurrencyStamp = Guid.NewGuid().ToString(), // sello de concurrencia
+
+            });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "Admin",
+                NormalizedName = "ADMIN",
+                Id = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+
+            });
+        }
+
+    }
 }
 

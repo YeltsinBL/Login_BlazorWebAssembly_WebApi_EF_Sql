@@ -23,6 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 });
 // Agregamos la identidad del usuario y el DBContex al Services
 builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>() // Agregamos los roles del usuario
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Registramos y configuramos el JWT
