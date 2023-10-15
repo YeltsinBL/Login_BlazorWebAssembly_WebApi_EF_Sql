@@ -30,7 +30,7 @@ namespace LoginApplication.Client.Service
         {
             var result = await _httpClient.PostAsJsonAsync("api/Accounts", registerModel);
             if (result.IsSuccessStatusCode)
-                return new RegisteResult { Successful = true, Errors = new List<string> { "Cuenta creada satisfactoriamenteß" } };
+                return new RegisteResult { Successful = true, Errors = new List<string> { "Cuenta creada satisfactoriamente" } };
             return new RegisteResult { Successful = false, Errors = new List<string> { "Ocurrió un error" } };
         }
 

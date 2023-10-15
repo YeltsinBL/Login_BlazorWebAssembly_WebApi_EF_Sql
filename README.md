@@ -45,6 +45,7 @@ dotnet ef database update
 
 - AccountsController: registar al usuario.
 - LoginController: iniciar sesión.
+- WeatherForecastController: agregar una autorización por roles.
 - Program: se configuró para utilizar la interfaz de Swagger.
 
 ## Shared Project
@@ -76,6 +77,7 @@ dotnet ef database update
   - LoginDisplay: formulario para mostrar las opciones de sesión.
   - Logout: formulario para cerrar sesión.
   - Register: formulario para registrar nuestra cuenta.
+  - Counter: agregar mensajes del rol que se ha autenticado.
 - Shared
   - MainLayout: se agrega el LoginDisplay para mostrar las opciones.
 - App: agregamos el componente de autorización.
