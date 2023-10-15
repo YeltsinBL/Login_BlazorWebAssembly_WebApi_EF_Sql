@@ -77,7 +77,8 @@ dotnet ef database update
   - LoginDisplay: formulario para mostrar las opciones de sesión.
   - Logout: formulario para cerrar sesión.
   - Register: formulario para registrar nuestra cuenta.
-  - Counter: agregar mensajes del rol que se ha autenticado.
+  - Counter: mostrar el formulario al usuario autenticado y mensajes de su tipo de rol.
+  - FetchData: agregar lógica si el usuario esta autenticado y pertenece al rol de la api para mostrar información.
 - Shared
   - MainLayout: se agrega el LoginDisplay para mostrar las opciones.
 - App: agregamos el componente de autorización.
